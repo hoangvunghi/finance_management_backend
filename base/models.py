@@ -15,7 +15,7 @@ class TransactionType(models.Model):
 # Model Category là danh mục của giao dịch (thu, chi)
 class Category(models.Model):
     name = models.CharField(max_length=100)
-    type = models.ForeignKey(TransactionType, on_delete=models.CASCADE)  # Liên kết đến TransactionType
+    type = models.ForeignKey(TransactionType, on_delete=models.CASCADE) 
     icon = models.ImageField(upload_to='icons/', blank=True, null=True)
 
     def __str__(self):
@@ -57,9 +57,9 @@ class UserProfile(models.Model):
 
 
 class OTP(models.Model):
-    email = models.EmailField(unique=True)  # Mỗi email chỉ có một mã OTP
-    code = models.CharField(max_length=6)  # Mã OTP
-    created_at = models.DateTimeField(auto_now=True)  # Thời gian tạo mã, tự động cập nhật
+    email = models.EmailField(unique=True) 
+    code = models.CharField(max_length=6)  
+    created_at = models.DateTimeField(auto_now=True)  
 
     def is_valid(self):
         print("-----------------")
@@ -67,7 +67,7 @@ class OTP(models.Model):
         print(self.created_at + timedelta(minutes=5))
         print(now())
         print("-----------------")
-        return now() < self.created_at + timedelta(minutes=5)  # Mã hợp lệ trong 5 phút
+        return now() < self.created_at + timedelta(minutes=5)  
 
 
 # Tự động tạo UserProfile khi tạo User
